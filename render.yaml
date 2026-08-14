@@ -2,8 +2,8 @@ services:
   - type: web
     name: mass-report-bot
     env: python
-    region: oregon
-    plan: free
+    region: oregon # Region rapidă
+    plan: free # Sau starter dacă vrei CPU dedicat constant
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
@@ -11,5 +11,4 @@ services:
         sync: false
       - key: SERVER_ID
         sync: false
-      - key: REPORT_REASON
-        value: "This server appears to be involved in raid/spam activity. It is being used to send unsolicited spam and mass mentions such as @everyone/@here, disrupting other Discord servers. Please review the server and take appropriate action if it violates Discord's rules."
+    autoDeploy: true
