@@ -10,8 +10,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # Variabile de mediu
+# IMPORTANT: TREBUIE USER TOKEN (Selfbot), NU BOT TOKEN
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN', '')
-SERVER_ID = os.getenv('SERVER_ID', '1487092822913060994') # ID-ul serverului TĂU sau al țintei
+SERVER_ID = os.getenv('SERVER_ID', '123456789012345678') # Pune ID-ul serverului aici
 
 # Reason-ul exact cerut
 REPORT_REASON = "This server appears to be involved in raid/spam activity. It is being used to send unsolicited spam and mass mentions such as @everyone/@here, disrupting other Discord servers. Please review the server and take appropriate action if it violates Discord's rules."
@@ -25,7 +26,7 @@ USER_AGENTS = [
 
 async def send_report(session, semaphore, stop_event):
     """
-    Trimite un raport către Discord folosind endpoint-ul corect pentru selfbot.
+    Trimite un raport către Discord folosind endpoint-ul corect pentru Selfbot-Guild Report.
     URL: /api/v10/users/@me/guilds/{guild_id}/report
     """
     async with semaphore:
@@ -41,7 +42,7 @@ async def send_report(session, semaphore, stop_event):
             "User-Agent": random.choice(USER_AGENTS)
         }
 
-        # URL CORECT: v10, @me (nu amе), endpoint-ul de report specific
+        # URL CORECT: v10, @me (nu amе), endpoint-ul de report specific pentru guild
         url = f"https://discord.com/api/v10/users/@me/guilds/{SERVER_ID}/report"
 
         payload = {
